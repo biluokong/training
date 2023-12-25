@@ -7,7 +7,7 @@ import jieba
 import requests
 from bs4 import BeautifulSoup
 from pyecharts import options as opts
-from pyecharts.charts import Bar, Line, Pie, WordCloud, Scatter, Funnel, TreeMap
+from pyecharts.charts import Bar, Line, Pie, WordCloud, Scatter, Funnel, TreeMap, PictorialBar
 from pyecharts.charts.chart import RectChart
 
 URL_REG = r'http(s)?://([a-z0-9-]+.)+[a-z0-9-]{2,}(/?.*)?'
@@ -21,6 +21,7 @@ class ChartsType(Enum):
     Scatter = '散点图'
     Funnel = '漏斗图'
     TreeMap = '矩形树图'
+    PictorialBar = '象形柱图'
 
 
 def html_filter(text: str, pattern: Pattern = None) -> str:
@@ -168,7 +169,10 @@ def draw_words_counter(text: str, chart_type: ChartsType = ChartsType.Bar, count
         chart.add('词频统计', words_counts, itemstyle_opts=opts.ItemStyleOpts())
     elif chart_type == ChartsType.TreeMap:
         chart = TreeMap()
-        chart.add('词频统计', [{'value': v, 'name': k} for k, v in words_counts])
+        chart.add('词频统计', [{'value': v, 'name': k} for k, v in words_counts], )
+    elif chart_type == ChartsType.PictorialBar:
+        chart = PictorialBar(opts.InitOpts())
+        set_coordinate(chart, words, counts)
 
     # 设置图表的标题
     # chart.set_global_opts(title_opts=opts.TitleOpts(title=title))

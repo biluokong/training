@@ -15,7 +15,8 @@ selected_type = st.sidebar.selectbox('您希望以哪种图显示：', (
     ChartsType.WordCloud.value,
     ChartsType.Scatter.value,
     ChartsType.Funnel.value,
-    ChartsType.TreeMap.value
+    ChartsType.TreeMap.value,
+    ChartsType.PictorialBar.value
 )
                                      )
 
