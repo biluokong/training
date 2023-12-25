@@ -1,6 +1,16 @@
-import re
+import requests
+from bs4 import BeautifulSoup
 
-my_str = 'http://j-d.m/?%&=dd'
+url = 'https://jd.com'
 
-print(re.search(r'http(s)?://([a-z0-9-]+.)+[a-z0-9-]{2,}(/?.*)?', my_str))
+# 发送GET请并获取响应
+response = requests.get(url)
+
+# 根据文本的内容来推测它的编码方式，防止中文乱码输出。
+response.encoding = response.apparent_encoding
+
+# 使用BeautifulSoup解析响应文本
+soup = BeautifulSoup(response.content, 'html.parser')
+
+print(soup.text)
 

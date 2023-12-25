@@ -108,7 +108,7 @@ def get_html_content(url: str, tags: List[str] = None, joinStr: str = '') -> Tup
     # 根据文本的内容来推测它的编码方式，防止中文乱码输出。
     response.encoding = response.apparent_encoding
 
-    # 使用BeautifulSoup解析响应文本（.content包含标签，.text不包含标签）
+    # 使用BeautifulSoup解析响应文本
     soup = BeautifulSoup(response.content, 'html.parser')
 
     # 获取网页中所有span标签的内容
