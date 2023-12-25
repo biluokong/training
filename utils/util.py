@@ -111,7 +111,7 @@ def get_html_content(url: str, tags: List[str] = None, joinStr: str = '') -> Tup
     # 使用BeautifulSoup解析响应文本
     soup = BeautifulSoup(response.content, 'html.parser')
 
-    # 获取网页中所有span标签的内容
+    # 获取网页中所有指定标签的内容
     items = []
     if tags is None:
         tags = ['div']
@@ -149,7 +149,7 @@ def draw_words_counter(text: str, chart_type: ChartsType = ChartsType.Bar, count
     # 设置图表的宽高
     chart = None
     if chart_type == ChartsType.Bar:
-        chart = Bar(opts.InitOpts())
+        chart = Bar()
         set_coordinate(chart, words, counts)
     elif chart_type == ChartsType.Line:
         chart = Line()

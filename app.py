@@ -6,7 +6,9 @@ import streamlit_echarts
 from utils import util
 from utils.util import ChartsType
 
+# 配置当前网页的基本信息
 st.set_page_config(page_title='网站关键词出现频率）', page_icon='🐛', layout='wide')
+# 设置侧边栏的内容
 st.sidebar.header('网站关键词出现频率')
 selected_type = st.sidebar.selectbox('您希望以哪种图显示：', (
     ChartsType.Bar.value,
@@ -19,8 +21,8 @@ selected_type = st.sidebar.selectbox('您希望以哪种图显示：', (
     ChartsType.PictorialBar.value
 )
                                      )
-
 st.markdown('# 统计网站内容的词频')
+# 添加文字输入框
 url = st.text_input('请输入你想爬取的网站的url')
 
 if st.button('查询'):
